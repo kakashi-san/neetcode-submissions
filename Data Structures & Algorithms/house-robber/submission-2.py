@@ -1,0 +1,15 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        memo = {}
+        def dp(i):
+            if i in memo:
+                return memo[i]
+
+            if i >= len(nums):
+                return 0
+            rob1 = nums[i] + dp(i + 2)
+            rob2 = dp(i + 1)
+            memo[i] = max(rob1, rob2)
+            return memo[i]
+
+        return dp(0)
